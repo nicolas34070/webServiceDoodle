@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditPropositionTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditPropositionLabel_id}" for="id" />
+                    <h:inputText id="id" value="#{propositionController.selected.id}" title="#{bundle.EditPropositionTitle_id}" required="true" requiredMessage="#{bundle.EditPropositionRequiredMessage_id}"/>
+                    <h:outputLabel value="#{bundle.EditPropositionLabel_datedebut}" for="datedebut" />
+                    <h:inputText id="datedebut" value="#{propositionController.selected.datedebut}" title="#{bundle.EditPropositionTitle_datedebut}" required="true" requiredMessage="#{bundle.EditPropositionRequiredMessage_datedebut}">
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.EditPropositionLabel_datefin}" for="datefin" />
+                    <h:inputText id="datefin" value="#{propositionController.selected.datefin}" title="#{bundle.EditPropositionTitle_datefin}" >
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.EditPropositionLabel_totalvote}" for="totalvote" />
+                    <h:inputText id="totalvote" value="#{propositionController.selected.totalvote}" title="#{bundle.EditPropositionTitle_totalvote}" required="true" requiredMessage="#{bundle.EditPropositionRequiredMessage_totalvote}"/>
+                    <h:outputLabel value="#{bundle.EditPropositionLabel_idSondage}" for="idSondage" />
+                    <h:selectOneMenu id="idSondage" value="#{propositionController.selected.idSondage}" title="#{bundle.EditPropositionTitle_idSondage}" required="true" requiredMessage="#{bundle.EditPropositionRequiredMessage_idSondage}">
+                        <f:selectItems value="#{sondageController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <h:commandLink action="#{propositionController.update}" value="#{bundle.EditPropositionSaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{bundle.EditPropositionViewLink}"/>
+                <br />
+                <h:commandLink action="#{propositionController.prepareList}" value="#{bundle.EditPropositionShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.EditPropositionIndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

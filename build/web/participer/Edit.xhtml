@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditParticiperTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditParticiperLabel_siparticipe}" for="siparticipe" />
+                    <h:inputText id="siparticipe" value="#{participerController.selected.siparticipe}" title="#{bundle.EditParticiperTitle_siparticipe}" required="true" requiredMessage="#{bundle.EditParticiperRequiredMessage_siparticipe}"/>
+                    <h:outputLabel value="#{bundle.EditParticiperLabel_proposition}" for="proposition" />
+                    <h:selectOneMenu id="proposition" value="#{participerController.selected.proposition}" title="#{bundle.EditParticiperTitle_proposition}" required="true" requiredMessage="#{bundle.EditParticiperRequiredMessage_proposition}">
+                        <f:selectItems value="#{propositionController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.EditParticiperLabel_utilisateur}" for="utilisateur" />
+                    <h:selectOneMenu id="utilisateur" value="#{participerController.selected.utilisateur}" title="#{bundle.EditParticiperTitle_utilisateur}" required="true" requiredMessage="#{bundle.EditParticiperRequiredMessage_utilisateur}">
+                        <f:selectItems value="#{utilisateurController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <h:commandLink action="#{participerController.update}" value="#{bundle.EditParticiperSaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{bundle.EditParticiperViewLink}"/>
+                <br />
+                <h:commandLink action="#{participerController.prepareList}" value="#{bundle.EditParticiperShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.EditParticiperIndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

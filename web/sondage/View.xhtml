@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewSondageTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewSondageLabel_id}"/>
+                    <h:outputText value="#{sondageController.selected.id}" title="#{bundle.ViewSondageTitle_id}"/>
+                    <h:outputText value="#{bundle.ViewSondageLabel_titre}"/>
+                    <h:outputText value="#{sondageController.selected.titre}" title="#{bundle.ViewSondageTitle_titre}"/>
+                    <h:outputText value="#{bundle.ViewSondageLabel_commentaire}"/>
+                    <h:outputText value="#{sondageController.selected.commentaire}" title="#{bundle.ViewSondageTitle_commentaire}"/>
+                    <h:outputText value="#{bundle.ViewSondageLabel_lieu}"/>
+                    <h:outputText value="#{sondageController.selected.lieu}" title="#{bundle.ViewSondageTitle_lieu}"/>
+                    <h:outputText value="#{bundle.ViewSondageLabel_datecreation}"/>
+                    <h:outputText value="#{sondageController.selected.datecreation}" title="#{bundle.ViewSondageTitle_datecreation}">
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:outputText>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{sondageController.destroyAndView}" value="#{bundle.ViewSondageDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{bundle.ViewSondageEditLink}"/>
+                <br />
+                <h:commandLink action="#{sondageController.prepareCreate}" value="#{bundle.ViewSondageCreateLink}" />
+                <br />
+                <h:commandLink action="#{sondageController.prepareList}" value="#{bundle.ViewSondageShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ViewSondageIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

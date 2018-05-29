@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewPropositionTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewPropositionLabel_id}"/>
+                    <h:outputText value="#{propositionController.selected.id}" title="#{bundle.ViewPropositionTitle_id}"/>
+                    <h:outputText value="#{bundle.ViewPropositionLabel_datedebut}"/>
+                    <h:outputText value="#{propositionController.selected.datedebut}" title="#{bundle.ViewPropositionTitle_datedebut}">
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:outputText>
+                    <h:outputText value="#{bundle.ViewPropositionLabel_datefin}"/>
+                    <h:outputText value="#{propositionController.selected.datefin}" title="#{bundle.ViewPropositionTitle_datefin}">
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:outputText>
+                    <h:outputText value="#{bundle.ViewPropositionLabel_totalvote}"/>
+                    <h:outputText value="#{propositionController.selected.totalvote}" title="#{bundle.ViewPropositionTitle_totalvote}"/>
+                    <h:outputText value="#{bundle.ViewPropositionLabel_idSondage}"/>
+                    <h:outputText value="#{propositionController.selected.idSondage}" title="#{bundle.ViewPropositionTitle_idSondage}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{propositionController.destroyAndView}" value="#{bundle.ViewPropositionDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{bundle.ViewPropositionEditLink}"/>
+                <br />
+                <h:commandLink action="#{propositionController.prepareCreate}" value="#{bundle.ViewPropositionCreateLink}" />
+                <br />
+                <h:commandLink action="#{propositionController.prepareList}" value="#{bundle.ViewPropositionShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ViewPropositionIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>
