@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Get</title>
+	<script
+  src="https://code.jquery.com/jquery-3.3.1.min.js"
+  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+  crossorigin="anonymous"></script>
+</head>
+<body>
+
+
+	<script type="text/javascript">
+		$(function() {
+			$.get("http://localhost:8080/webServiceDoodle/webresources/com.model.utilisateur")
+				.done(function() {
+					alert("success");
+				})
+				.fail(function(data) {
+					alert("fail");
+					console.log(data);
+				})
+				.always(function() {
+					console.log("finished");
+				});
+			})
+	</script>
+
+
+</body>
+</html>
